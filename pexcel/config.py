@@ -22,7 +22,6 @@ DataEncryptType = Enum('DataEncryptType', ('None', 'Base64', 'RSA'))
 """
 以下为详细配置，可手动配置，可用命令行或者GUI参数覆盖。
 """
-
 # 生成的工具类库类型枚举
 LibsType = Enum('LibsType', ('TypeScript', 'JavaScript', 'C', 'Java', 'Python'))
 

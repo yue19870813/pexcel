@@ -16,3 +16,4 @@ print ("Hello world!")
 print(config.INPUT_PATH)
 
 print("The author is " + config.__author__)
+
