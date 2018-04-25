@@ -28,6 +28,7 @@ NOTE:
 
 """
 将excel转换为数据列表
+filename: excel文件路径
 return：表名，配表描述，配表其他信息，数据
 
 数据格式：[

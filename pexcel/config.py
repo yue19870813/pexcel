@@ -16,7 +16,7 @@ __author__ = 'ituuz'
 OutputDataType = Enum('OutputDataType', ('Json', 'Binary', 'Text'))
 
 # 最终生成数据的加密类型枚举
-DataEncryptType = Enum('DataEncryptType', ('None', 'Base64', 'RSA'))
+DataEncryptType = Enum('DataEncryptType', ('NoEncrypt', 'Base64', 'RSA'))
 
 
 """
@@ -35,7 +35,7 @@ OUTPUT_PATH = "output path"
 OUTPUT_DATA_TYPE = OutputDataType.Json
 
 # 生成数据的加密方式
-DATA_ENCRYPT_TYPE = DataEncryptType.None
+DATA_ENCRYPT_TYPE = DataEncryptType.NoEncrypt
 
 # 生成文件后缀名
 OUTPUT_FILE_POSTFIX = "ped"
