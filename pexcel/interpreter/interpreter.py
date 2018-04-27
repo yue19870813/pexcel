@@ -2,9 +2,12 @@
 # -*- coding: utf-8 -*-
 # Filename: excel.py
 
+import os
+import os.path
+
 ' excel interpreter '
 
-__author__ = 'ituuz'
+__author__ = 'ituuz 111'
 
 """
 本模块是一个解释器的功能，主要功能就是负责获取原始数据。
@@ -38,15 +41,30 @@ class DataStruct(object):
 	def toBinary(self):
 		pass
 
+		
+
 """
 这里根据配置生成指定的各类数据并控制整体流程
 遍历指定路径文件进行生成
 """
 def runByPath(path):
+	if not os.path.isdir(path):
+		print(path + "不是一个路径，请检查你的配置路径。")
+		return
 	# 递归遍历目录解析excel文件
+	getData(path)
 
-	pass
-
+def getData(path):
+	#获取path目录下所有文件
+	fileList = os.listdir(path)  
+	for filename in fileList:
+		pathTemp = os.path.join(path,filename) 
+		if os.path.isdir(pathTemp):
+			getData(pathTemp)
+		else:
+			## TODO:处理数据
+			print("生成该文件数据：" + pathTemp)
+			pass
 
 """
 根据传入的文件列表进行生成

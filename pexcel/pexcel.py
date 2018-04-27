@@ -3,6 +3,7 @@
 # Filename: pexcel.py
 
 import config
+from interpreter import interpreter
 
 __author__ = 'ituuz'
 
@@ -17,3 +18,7 @@ print(config.INPUT_PATH)
 
 print("The author is " + config.__author__)
 
+print("The author is " + interpreter.__author__)
+
+# 测试接口
+interpreter.runByPath("E:/pexcel.git/trunk/pexcel");
