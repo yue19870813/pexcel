@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # Filename: pexcel.py
 
-import sys, getopt, config
+import sys, getopt, config, language
 from interpreter import interpreter
 
 __author__ = 'ituuz'
@@ -11,40 +11,10 @@ __author__ = 'ituuz'
 这个是整个程序的入口文件，负责初始化一些东西，激活一些配置，调用后续功能。
 """
 
-print ("Hello world!")
-
 print("The author is " + config.__author__)
 
 # 当前版本号
 VERSION = "v0.0.1"
-
-# 命令行规则及使用介绍，HELE_CONTENT同时也用于帮助功能。
-HELP_CONTENT = """
-------------命令行参数使用介绍--------------
-用法：
-	对指定目录里excel进行生成：
-	python pexcel.py -i xxx -o xxx 
-  或：
-	对所给的文件列表进行生成：
-	python pexcel.py -f xxx,xxx,xxx -o xxx
-  或：
-	根据所给的分组文件数据进行生成
-	python pexcel.py -g key1:xxx,xxx,xxx|key2:xxx,xxx -o xxx
-重要参数：
-	-i excel源文件目录
-	-o 生成文件输出目录
-	-f 文件列表 格式为：xxx,xxx,xxx
-	-g 文件分组列表 格式为：xxx,xxx,xxx
-可选参数：
-	-t 最终生成的数据类型，可选类型有[json|bin|txt]，默认为json。 
-	-e 数据加密类型[n|b|r]，b是Base64，r是RSA，n是不加密，默认为n。 
-	-l 生成的工具类库类型，可选类型有[ts|js|c|java|python]，默认不生成类库文件。 
-	-p 生成的数据文件后缀名，默认为：ped。
-	-v 工具当前版本号。
-	-h 命令行帮助信息。
-	其他有关信息请参考：https://github.com/yue19870813/pexcel/blob/master/README.md
----------------------------------------------
-"""
 
 # 入口函数
 def main(argv):
@@ -56,8 +26,8 @@ def main(argv):
 		# 获取命令行参数
 		opts, args = getopt.getopt(argv,"i:o:f:g:t:e:l:p:vh")
 	except getopt.GetoptError:
-		print("确定你的命令或参数是否正确，请参考帮助信息。")
-		print(HELP_CONTENT)
+		print(language.COMMAND_ERROR_TIPS)
+		print(language.HELP_CONTENT)
 
 	# 取得所有命令行参数
 	command_i = "" # excel源文件目录
@@ -91,7 +61,7 @@ def main(argv):
 			print("v0.0.1")
 			sys.exit()
 		elif opt == '-h' or opt == "help":
-			print(HELP_CONTENT)
+			print(language.HELP_CONTENT)
 			sys.exit()
 		else:
 			print ("命令行参数使用错误：" + opt + "  " + arg)

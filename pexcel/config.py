@@ -18,6 +18,8 @@ OutputDataType = Enum('OutputDataType', ('Json', 'Binary', 'Text'))
 # 最终生成数据的加密类型枚举
 DataEncryptType = Enum('DataEncryptType', ('NoEncrypt', 'Base64', 'RSA'))
 
+# 系统语言枚举
+LanguageType = Enum('LanguageType', ('EN', 'ZH'))
 
 """
 以下为详细配置，可手动配置，可用命令行或者GUI参数覆盖。
@@ -42,3 +44,6 @@ OUTPUT_FILE_POSTFIX = "ped"
 
 # 生成的配套工具类库类型
 OUTPUT_LIBS_TYPE = LibsType.TypeScript
+
+# 当前语言
+CURR_LANGUAGE = LanguageType.ZH
