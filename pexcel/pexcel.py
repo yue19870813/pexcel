@@ -70,27 +70,24 @@ def main(argv):
 
 	# 开始处理命令行参数逻辑
 	if command_o == "":
-		print("数据文件输出目录不能为空!")
-		sys.exit()
+		# 命令行输出为空则读取config中的配置
+		command_o = config.OUTPUT_PATH
+		# 如果还为空则终止程序
+		if command_o == "":
+			print("数据文件输出目录不能为空!")
+			sys.exit()
 
+
+	# 判断输入目录是否为空
 	if command_i == "" and command_f == "" and command_g == "":
-		print("输入目录不能为空!")
-		sys.exit()
+		# 如果为空则使用config中的配置
+		command_i = config.INPUT_PATH
+		# 如果还为空则终止程序
+		if command_i == "":
+			print("输入目录不能为空!")
+			sys.exit()
 
-	# 先对生成方式进行判断
-	if command_i != "":
-		# excel目录不为空，则为对整个目录生成数据。
-		# TODO
-		pass
-	elif command_f != "":
-		# 对给的指定文件列表进行数据生成
-		# TODO
-		pass
-	elif command_g != "":
-		# 对分组进行数据生成
-		# TODO
-		pass
-
+	
 
 	# 解析其他可选参数
 	if command_t != "":
@@ -106,7 +103,21 @@ def main(argv):
 		# TODO:生成的数据文件后缀名
 		pass
 
-	# TODO:根据上面对参数的解析调用不同配置和接口
+	# 根据上面对参数的解析调用不同配置和接口
+	if command_i != "":
+		# excel目录不为空，则为对整个目录生成数据
+		interpreter.runByPath(command_i)
+		pass
+	elif command_f != "":
+		# 对给的指定文件列表进行数据生成
+		# TODO
+		pass
+	elif command_g != "":
+		# 对分组进行数据生成
+		# TODO
+		pass
+
+
 
 # 程序入口
 if __name__ == "__main__":
