@@ -26,6 +26,7 @@ def main(argv):
 		# 获取命令行参数
 		opts, args = getopt.getopt(argv,"i:o:f:g:t:e:l:p:vh")
 	except getopt.GetoptError:
+		# 确定你的命令或参数是否正确，请参考帮助信息。
 		print(language.COMMAND_ERROR_TIPS)
 		print(language.HELP_CONTENT)
 
