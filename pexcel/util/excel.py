@@ -3,6 +3,8 @@
 # Filename: excel.py
 import openpyxl
 import os
+import re
+import sys
 
 ' excel module '
 
@@ -45,35 +47,62 @@ return：表名，配表描述，配表其他信息，数据
 		  ]
 """
 
-def convertExcel2List(filename, sheetname):
+def getFileName(file):
+	fileName = os.path.basename(file)
+	fileName = os.path.splitext(fileName)
+	fileName = fileName[0]
+	return fileName
 
-	data = openpyxl.load_workbook(filename)
+def excelNameCheck(file, excelName):
+	if excelName == None:
+		excelName = getFileName(file)
+	else:
+		excelName = excelName.replace(" ", "")
+		if excelName == "":
+			excelName = getFileName(file)
+		else:
+			#判断首字母
+			firstStr = excelName[0]
+			if firstStr.isalpha():
+				return excelName
+			else:
+				print("excel name it is not start with letters")
+				sys.exit(0)
+	return excelName
+
+def convertExcel2List(file, sheetname):
+
+	data = openpyxl.load_workbook(file)
 	if(sheetname == ""):
 		sheet = data.get_active_sheet()
 	else:
 		sheet = data.get_sheet_by_name(sheetname)
 
+	listExcel = []
 	excelName = sheet.cell(row=1, column=2).value
+	listExcel = [excelNameCheck(file, excelName)]
+
 	excelDes = sheet.cell(row=2, column=2).value
 	excelOther = sheet.cell(row=3, column=2).value
-	listExcel = [excelName, excelDes, excelOther]
+	listExcel.append(excelDes)
+	listExcel.append(excelOther)
 	# print("listExcel", listExcel)
 
 	listProperty = []
-	for rowProperty in sheet.iter_rows(min_row=4, max_col=3, max_row=4):
+	for rowProperty in sheet.iter_rows(min_row=4, max_col=5, max_row=4):
 		for cell in rowProperty:
 			listProperty.append(cell.value)
 	listExcel.append(listProperty)
 	# print("listExcel", listExcel)
 
 	listNumClass = []
-	for rowNumClass in sheet.iter_rows(min_row=6, max_col=3, max_row=6):
+	for rowNumClass in sheet.iter_rows(min_row=6, max_col=5, max_row=6):
 		for cell in rowNumClass:
 			listNumClass.append(cell.value)
 	listExcel.append(listNumClass)
 	# print("listExcel", listExcel)
 
-	for row in sheet.iter_rows(min_row=9, max_col=3):
+	for row in sheet.iter_rows(min_row=9, max_col=5):
 		listData = []
 		for cell in row:
 			listData.append(cell.value)
@@ -85,6 +114,7 @@ def convertExcel2List(filename, sheetname):
 def main():
 	listExcel = convertExcel2List("../../template/t_template.xlsx", "")
 	print(listExcel)
+	# getFileName("../../template/t_template.xlsx")
 
 if __name__=="__main__":
 	main()
