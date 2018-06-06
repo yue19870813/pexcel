@@ -122,6 +122,16 @@ def convertExcel2List(file, sheetname):
 			listDataName.append(cell.value)
 	listExcel.append(listDataName)
 
+	# key
+	listKey = []
+	for rowKey in sheet.iter_rows(min_row=8, max_col=5, max_row=8):
+		for cell in rowKey:
+			if cell.value == "KEY":
+				listKey.append("1")
+			else:
+				listKey.append("0")
+	listExcel.append(listKey)
+
 	# 数据
 	for row in sheet.iter_rows(min_row=9, max_col=5):
 		listData = []
