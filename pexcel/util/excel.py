@@ -88,6 +88,7 @@ def convertExcel2List(file, sheetname):
 	listExcel.append(excelOther)
 	# print("listExcel", listExcel)
 
+	# 属性名
 	listProperty = []
 	for rowProperty in sheet.iter_rows(min_row=4, max_col=5, max_row=4):
 		for cell in rowProperty:
@@ -95,17 +96,43 @@ def convertExcel2List(file, sheetname):
 	listExcel.append(listProperty)
 	# print("listExcel", listExcel)
 
+	# 数据类型
 	listNumClass = []
+	# none列
+	listNone = []
+	col = 1
 	for rowNumClass in sheet.iter_rows(min_row=6, max_col=5, max_row=6):
 		for cell in rowNumClass:
+			if cell.value == None :
+				listNone.append(col)
+			else:
+				cell.value = cell.value.replace(" ", "")
+				if cell.value == "" :
+					listNone.append(col)
 			listNumClass.append(cell.value)
+			col = col + 1
+	col = 1
 	listExcel.append(listNumClass)
-	# print("listExcel", listExcel)
+	# print("listNone==========", listNone, col)
 
+	# 数据名
+	listDataName = []
+	for rowDataName in sheet.iter_rows(min_row=7, max_col=5, max_row=7):
+		for cell in rowDataName:
+			listDataName.append(cell.value)
+	listExcel.append(listDataName)
+
+	# 数据
 	for row in sheet.iter_rows(min_row=9, max_col=5):
 		listData = []
 		for cell in row:
+			# 空列不保存数据
+			if col in listNone:
+				col = col + 1
+				continue
 			listData.append(cell.value)
+			col = col + 1
+		col = 1
 		listExcel.append(listData)
 
 	return listExcel
