@@ -5,6 +5,8 @@
 import os
 import os.path
 
+from util import excel
+
 ' excel interpreter '
 
 __author__ = 'ituuz 111'
@@ -62,9 +64,20 @@ def getData(path):
 		if os.path.isdir(pathTemp):
 			getData(pathTemp)
 		else:
-			## TODO:处理数据
+			##  非excel文件不做处理
+			if os.path.splitext(pathTemp)[1] != ".xlsx":
+				continue
+			## 处理数据
 			print("生成该文件数据：" + pathTemp)
-			pass
+			excelData = excel.convertExcel2List(pathTemp, "")
+			print (excelData)
+			tableName = excelData[0]
+			tableDes = excelData[1]
+			tableElse = excelData[2]
+			tableData = excelData[3]
+			print (tableName + "====" + tableDes + "====" + tableElse)
+			print (tableData)
+			## dataObj = DataStruct()
 
 """
 根据传入的文件列表进行生成
