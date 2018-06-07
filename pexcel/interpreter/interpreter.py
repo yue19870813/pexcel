@@ -15,6 +15,9 @@ __author__ = 'ituuz 111'
 本模块是一个解释器的功能，主要功能就是负责获取原始数据。
 """
 
+# 缓存所有数据，key-value，key为表名，value为数据。
+tableDataDict = {}
+
 # 存储表格数据的结构体
 class DataStruct(object):
 	"""
@@ -57,14 +60,14 @@ def runByPath(path):
 	getData(path)
 
 def getData(path):
-	#获取path目录下所有文件
+	# 获取path目录下所有文件
 	fileList = os.listdir(path)  
 	for filename in fileList:
 		pathTemp = os.path.join(path,filename) 
 		if os.path.isdir(pathTemp):
 			getData(pathTemp)
 		else:
-			##  非excel文件不做处理
+			## 非excel文件不做处理
 			if os.path.splitext(pathTemp)[1] != ".xlsx":
 				continue
 			## 处理数据
@@ -77,7 +80,9 @@ def getData(path):
 			tableData = excelData[3]
 			print (tableName + "====" + tableDes + "====" + tableElse)
 			print (tableData)
+
 			## dataObj = DataStruct()
+			# tableDataDict[tableName] = dataObj
 
 """
 根据传入的文件列表进行生成
