@@ -30,23 +30,6 @@ NOTE:
 """
 
 
-"""
-将excel转换为数据列表
-filename: excel文件路径
-return：表名，配表描述，配表其他信息，数据
-
-数据格式：[
-			[属性名1, 属性名2，属性名3],
-			[数据类型1,数据类型2, 数据类型3],
-			[数据1, 数据2, 数据3],
-			[1, 0, 0],
-			...
-			...
-			...
-			[数据1, 数据2, 数据3]
-		  ]
-"""
-
 def getFileName(file):
 	fileName = os.path.basename(file)
 	fileName = os.path.splitext(fileName)
@@ -70,6 +53,22 @@ def excelNameCheck(file, excelName):
 				sys.exit(0)
 	return excelName
 
+"""
+将excel转换为数据列表
+filename: excel文件路径
+return：数据
+
+数据格式：[
+			[属性名1, 属性名2，属性名3],
+			[数据类型1,数据类型2, 数据类型3],
+			[数据1, 数据2, 数据3],
+			[1, 0, 0],
+			...
+			...
+			...
+			[数据1, 数据2, 数据3]
+		  ]
+"""
 def convertExcel2List(file, sheetname):
 
 	data = openpyxl.load_workbook(file)
