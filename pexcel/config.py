@@ -28,7 +28,7 @@ LanguageType = Enum('LanguageType', ('EN', 'ZH'))
 LibsType = Enum('LibsType', ('TypeScript', 'JavaScript', 'C', 'Java', 'Python'))
 
 # 目标excel文件路径 
-INPUT_PATH = "input path"
+INPUT_PATH = "./../template/"
 
 # 最终输出目录
 OUTPUT_PATH = "output path"
