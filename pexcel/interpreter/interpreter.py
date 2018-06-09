@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Filename: excel.py
+# Filename: interpreter.py
 
 import os
 import os.path
 
 from util import excel
+from generator import generator
 
-' excel interpreter '
+' interpreter module '
 
-__author__ = 'ituuz 111'
+__author__ = 'ituuz'
 
 """
 本模块是一个解释器的功能，主要功能就是负责获取原始数据。
@@ -33,20 +34,8 @@ class DataStruct(object):
 		self.tableDes = tableDes
 		self.tableElse = tableElse
 		self.tableData = tableData
-	
-	# 将数据转换为json格式字符串
-	def toJson(self):
-		pass		
 
-	# 将数据转换成纯文本格式数据
-	def toText(self):
-		pass
 
-	# 将数据转换为二进制格式数据
-	def toBinary(self):
-		pass
-
-		
 
 """
 这里根据配置生成指定的各类数据并控制整体流程
