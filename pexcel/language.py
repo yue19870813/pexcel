@@ -75,4 +75,9 @@ COMMAND_ERROR_TIPS_ZH = "确定你的命令或参数是否正确，请参考帮�
 COMMAND_ERROR_TIPS_EN = "Make sure your command is right，please refer to help information."
 COMMAND_ERROR_TIPS = (COMMAND_ERROR_TIPS_ZH if (config.CURR_LANGUAGE == config.LanguageType.ZH) else COMMAND_ERROR_TIPS_EN)
 
+# 数据生成格式不存在
+DATA_GENERATE_TYPE_NOT_EXIST_ZH = "数据生成格式不存在"
+DATA_GENERATE_TYPE_NOT_EXIST_EN = "This data generate type is not exist"
+DATA_GENERATE_TYPE_NOT_EXIST = (DATA_GENERATE_TYPE_NOT_EXIST_ZH if (config.CURR_LANGUAGE == config.LanguageType.ZH) else DATA_GENERATE_TYPE_NOT_EXIST_EN)
+
 # other....
