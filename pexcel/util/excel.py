@@ -61,12 +61,14 @@ return：数据
 数据格式：[
 			[属性名1, 属性名2，属性名3],
 			[数据类型1,数据类型2, 数据类型3],
-			[数据1, 数据2, 数据3],
 			[1, 0, 0],
-			...
-			...
-			...
-			[数据1, 数据2, 数据3]
+			[
+				[数据1, 数据2, 数据3],
+				...
+				...
+				...
+				[数据1, 数据2, 数据3]
+			}
 		  ]
 """
 def convertExcel2List(file, sheetname):
@@ -87,17 +89,7 @@ def convertExcel2List(file, sheetname):
 	listExcel.append(excelOther)
 	# print("listExcel", listExcel)
 
-	# 属性名
-	listProperty = []
-	for rowProperty in sheet.iter_rows(min_row=4, max_col=5, max_row=4):
-		for cell in rowProperty:
-			listProperty.append(cell.value)
-	listExcel.append(listProperty)
-	# print("listExcel", listExcel)
-
-	# 数据类型
-	listNumClass = []
-	# none列
+	# 先判断哪些是none列
 	listNone = []
 	col = 1
 	for rowNumClass in sheet.iter_rows(min_row=6, max_col=5, max_row=6):
@@ -108,6 +100,32 @@ def convertExcel2List(file, sheetname):
 				cell.value = cell.value.replace(" ", "")
 				if cell.value == "" :
 					listNone.append(col)
+			col = col + 1
+	col = 1
+	# print("listNone==========", listNone, col)
+
+	# 属性名
+	listProperty = []
+	for rowProperty in sheet.iter_rows(min_row=4, max_col=5, max_row=4):
+		for cell in rowProperty:
+			#空列不保存数据
+			if col in listNone:
+				col = col + 1
+				continue
+			listProperty.append(cell.value)
+			col = col + 1
+	col = 1
+	listExcel.append(listProperty)
+	# print("listExcel", listExcel)
+
+	# 数据类型
+	listNumClass = []
+	for rowNumClass in sheet.iter_rows(min_row=6, max_col=5, max_row=6):
+		for cell in rowNumClass:
+			#空列不保存数据
+			if col in listNone:
+				col = col + 1
+				continue
 			listNumClass.append(cell.value)
 			col = col + 1
 	col = 1
@@ -118,20 +136,34 @@ def convertExcel2List(file, sheetname):
 	listDataName = []
 	for rowDataName in sheet.iter_rows(min_row=7, max_col=5, max_row=7):
 		for cell in rowDataName:
+			#空列不保存数据
+			if col in listNone:
+				col = col + 1
+				continue
 			listDataName.append(cell.value)
+			col = col +1
+	col = 1
 	listExcel.append(listDataName)
 
 	# key
 	listKey = []
 	for rowKey in sheet.iter_rows(min_row=8, max_col=5, max_row=8):
 		for cell in rowKey:
-			if cell.value == "KEY":
+			#空列不保存数据
+			if col in listNone:
+				col = col + 1
+				continue
+			elif cell.value == "KEY":
 				listKey.append("1")
+				col = col +1
 			else:
 				listKey.append("0")
+				col = col +1
+	col = 1
 	listExcel.append(listKey)
 
 	# 数据
+	listDataAll = []
 	for row in sheet.iter_rows(min_row=9, max_col=5):
 		listData = []
 		for cell in row:
@@ -142,13 +174,14 @@ def convertExcel2List(file, sheetname):
 			listData.append(cell.value)
 			col = col + 1
 		col = 1
-		listExcel.append(listData)
+		listDataAll.append(listData)
+	listExcel.append(listDataAll)
 
 	return listExcel
 	
 
 def main():
-	listExcel = convertExcel2List("../../template/t_template.xlsx", "")
+	listExcel = convertExcel2List("./../../template/t_template.xlsx", "")
 	print(listExcel)
 	# getFileName("../../template/t_template.xlsx")
 

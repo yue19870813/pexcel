@@ -29,7 +29,7 @@ class DataStruct(object):
 	tableData: 表格数据集合
 	"""
 	def __init__(self, tableName, tableDes, tableElse, tableData):
-		super(ClassName, self).__init__()
+		super(DataStruct, self).__init__()
 		self.tableName = tableName
 		self.tableDes = tableDes
 		self.tableElse = tableElse
@@ -47,6 +47,8 @@ def runByPath(path):
 		return
 	# 递归遍历目录解析excel文件
 	getData(path)
+	# 生成目标数据格式
+	generator.generate(tableDataDict)
 
 def getData(path):
 	# 获取path目录下所有文件
@@ -67,11 +69,9 @@ def getData(path):
 			tableDes = excelData[1]
 			tableElse = excelData[2]
 			tableData = excelData[3]
-			print (tableName + "====" + tableDes + "====" + tableElse)
-			print (tableData)
-
-			## dataObj = DataStruct()
-			# tableDataDict[tableName] = dataObj
+			# 封装一个配表带数据结构
+			dataObj = DataStruct(tableName, tableDes, tableElse, tableData)
+			tableDataDict[tableName] = dataObj
 
 """
 根据传入的文件列表进行生成

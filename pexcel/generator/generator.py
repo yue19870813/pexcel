@@ -3,6 +3,7 @@
 # Filename: generator.py
 
 import config, language
+from util import excel
 # from interpreter import interpreter
 
 ' generator module '
@@ -18,7 +19,7 @@ __author__ = 'ituuz'
 """
 def generate (tableDataDict):
 	if config.OUTPUT_DATA_TYPE == config.OutputDataType.Json:
-		pass
+		toJson(tableDataDict)
 	elif config.OUTPUT_DATA_TYPE == config.OutputDataType.Text:
 		pass
 	elif config.OUTPUT_DATA_TYPE == config.OutputDataType.Binary:
@@ -29,8 +30,21 @@ def generate (tableDataDict):
 
 
 # 将数据转换为json格式字符串
-def toJson(self):
-	pass		
+def toJson(tableDataDict):
+	"""
+	[
+		tName:"nnn",
+		tDes:"xxx",
+		tOther:"xxx",
+		tKey:[1,1,0],
+		tP
+	]
+
+
+	"""
+	listExcel = excel.convertExcel2List("../template/t_template.xlsx", "")
+	print(listExcel)
+		
 
 # 将数据转换成纯文本格式数据
 def toText(self):
@@ -39,3 +53,10 @@ def toText(self):
 # 将数据转换为二进制格式数据
 def toBinary(self):
 	pass
+
+
+def main():
+	toJson()
+
+if __name__ == "__main__":
+	main()
