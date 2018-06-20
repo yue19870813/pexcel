@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 # Filename: generator.py
 
+import json
 import config, language
 from util import excel
 # from interpreter import interpreter
@@ -37,7 +38,11 @@ def toJson(tableDataDict):
 		tDes:"xxx",
 		tOther:"xxx",
 		tKey:[1,1,0],
-		tP
+		tData:[
+			[10000, "10001_200,10002_1,10004_5", "AAA"], 
+			[21001, "10004_1000,10001_1000", "BBB"], 
+			[22001, "10004_1000", "CCC"]
+		]
 	]
 
 
@@ -48,6 +53,8 @@ def toJson(tableDataDict):
 		print (k)
 		print (v)
 		print (v.tableData)
+		print ("*************************")
+		print (json.dumps(v.tableData))
 
 		
 
