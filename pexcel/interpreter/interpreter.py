@@ -28,12 +28,20 @@ class DataStruct(object):
 	tableElse: 表格其他信息
 	tableData: 表格数据集合
 	"""
-	def __init__(self, tableName, tableDes, tableElse, tableData):
+	def __init__(self, tableName, tableDes, tableElse, columnType, columnName, talbeKey, tableData):
 		super(DataStruct, self).__init__()
 		self.tableName = tableName
 		self.tableDes = tableDes
 		self.tableElse = tableElse
+		self.columnType = columnType
+		self.columnName = columnName
+		self.talbeKey = talbeKey
 		self.tableData = tableData
+
+	def __str__(self):
+		return "Table name:" + self.tableName + "\n\
+Table des:" + self.tableDes + "\n\
+Table else:" + self.tableElse
 
 
 
@@ -64,13 +72,15 @@ def getData(path):
 			## 处理数据
 			print("生成该文件数据：" + pathTemp)
 			excelData = excel.convertExcel2List(pathTemp, "")
-			print (excelData)
 			tableName = excelData[0]
 			tableDes = excelData[1]
 			tableElse = excelData[2]
-			tableData = excelData[3]
+			columnType = excelData[4]
+			columnName = excelData[5]
+			tableKey = excelData[6]
+			tableData = excelData[7]
 			# 封装一个配表带数据结构
-			dataObj = DataStruct(tableName, tableDes, tableElse, tableData)
+			dataObj = DataStruct(tableName, tableDes, tableElse, columnType, columnName, tableKey, tableData)
 			tableDataDict[tableName] = dataObj
 
 """

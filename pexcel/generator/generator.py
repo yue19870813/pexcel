@@ -42,8 +42,13 @@ def toJson(tableDataDict):
 
 
 	"""
-	listExcel = excel.convertExcel2List("../template/t_template.xlsx", "")
-	print(listExcel)
+	# listExcel = excel.convertExcel2List("../template/t_template.xlsx", "")
+	for k, v in tableDataDict.items():
+		print ("-------------------------")
+		print (k)
+		print (v)
+		print (v.tableData)
+
 		
 
 # 将数据转换成纯文本格式数据
