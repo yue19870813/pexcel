@@ -33,19 +33,31 @@ def generate (tableDataDict):
 # 将数据转换为json格式字符串
 def toJson(tableDataDict):
 	"""
-	[
-		tName:"nnn",
-		tDes:"xxx",
-		tOther:"xxx",
-		tKey:[1,1,0],
-		tData:[
-			[10000, "10001_200,10002_1,10004_5", "AAA"], 
-			[21001, "10004_1000,10001_1000", "BBB"], 
-			[22001, "10004_1000", "CCC"]
+	{
+		"tName": "nnn",
+		"tDes": "xxx",
+		"tOther": "xxx",
+		"cDes": ["序号", "xx", "xx"],
+		"cType": ["int", "string", "string"],
+		"cName": ["id", "xx", "yy"],
+		"tKey": [1, 1, 0],
+		"tData": [{
+				"id": 10000,
+				"xx": "10001_200,10002_1,10004_5",
+				"yy": "AAA"
+			},
+			{
+				"id": 21001,
+				"xx": "10004_1000,10001_1000",
+				"yy": "BBB"
+			},
+			{
+				"id": 22001,
+				"xx": "10004_1000",
+				"yy": "CCC"
+			}
 		]
-	]
-
-
+	}
 	"""
 	# listExcel = excel.convertExcel2List("../template/t_template.xlsx", "")
 	for k, v in tableDataDict.items():
@@ -56,7 +68,7 @@ def toJson(tableDataDict):
 		print ("*************************")
 		print (json.dumps(v.tableData))
 
-		
+	return "json"
 
 # 将数据转换成纯文本格式数据
 def toText(self):
