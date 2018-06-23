@@ -29,7 +29,7 @@ class DataStruct(object):
 	tableData: 表格数据集合
 	"""
 	def __init__(self, tableName, tableDes, tableElse, columnDes, 
-		columnType, columnName, talbeKey, tableData):
+		columnType, columnName, tableKey, tableData):
 		super(DataStruct, self).__init__()
 		self.tableName = tableName
 		self.tableDes = tableDes
@@ -37,7 +37,7 @@ class DataStruct(object):
 		self.columnDes = columnDes
 		self.columnType = columnType
 		self.columnName = columnName
-		self.talbeKey = talbeKey
+		self.tableKey = tableKey
 		self.tableData = tableData
 
 	def __str__(self):

@@ -5,7 +5,8 @@
 import json
 import config, language
 from util import excel
-# from interpreter import interpreter
+from interpreter import interpreter
+import json
 
 ' generator module '
 
@@ -59,14 +60,34 @@ def toJson(tableDataDict):
 		]
 	}
 	"""
-	# listExcel = excel.convertExcel2List("../template/t_template.xlsx", "")
+	dataForJson = {}
+
 	for k, v in tableDataDict.items():
-		print ("-------------------------")
-		print (k)
-		print (v)
-		print (v.tableData)
-		print ("*************************")
-		print (json.dumps(v.tableData))
+
+		dataForJson["tName"] = k
+		dataForJson["tDes"] = v.tableDes
+		dataForJson["tOther"] = v.tableElse
+		dataForJson["cDes"] = v.columnDes
+		dataForJson["cType"] = v.columnType
+		dataForJson["cName"] = v.columnName
+		dataKeyList = v.columnName
+		dataForJson["tKey"] = v.tableKey
+
+		# 数据部分
+		dataList = []
+		for dataOne in v.tableData:
+			dataOneMap = {}
+			index = 0
+			for v in dataOne:
+				dataOneMap[dataKeyList[index]] = v
+				index = index + 1
+			dataList.append(dataOneMap)
+		dataForJson["tData"] = dataList
+	
+	fw = open('generator/dataJson.json', 'w', encoding='utf-8')
+	json.dump(dataForJson, fw, ensure_ascii=False, indent=4)
+
+	# print(json.dumps(dataForJson, ensure_ascii=False, indent=4))
 
 	return "json"
 
