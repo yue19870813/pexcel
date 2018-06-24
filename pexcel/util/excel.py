@@ -75,7 +75,8 @@ def convertExcel2List(file, sheetname):
 	print ("file name is : " + file)
 	data = openpyxl.load_workbook(file)
 	if(sheetname == ""):
-		sheet = data.get_active_sheet()
+		# sheet = data.get_active_sheet()
+		sheet = data.active
 	else:
 		sheet = data.get_sheet_by_name(sheetname)
 
