@@ -84,12 +84,12 @@ def toJson(tableDataDict):
 			dataList.append(dataOneMap)
 		dataForJson["tData"] = dataList
 	
-	fw = open('generator/dataJson.json', 'w', encoding='utf-8')
-	json.dump(dataForJson, fw, ensure_ascii=False, indent=4)
-
+	# fw = open('generator/dataJson.json', 'w', encoding='utf-8')
+	# json.dump(dataForJson, fw, ensure_ascii=False, indent=4)
+	# print (json.dumps(dataForJson))
 	# print(json.dumps(dataForJson, ensure_ascii=False, indent=4))
-
-	return "json"
+	# json.toText(dataForJson)
+	return json.dumps(dataForJson)
 
 # 将数据转换成纯文本格式数据
 def toText(tableDataDict):
