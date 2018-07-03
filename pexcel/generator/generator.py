@@ -33,33 +33,6 @@ def generate (tableDataDict):
 
 # 将数据转换为json格式字符串
 def toJson(tableDataDict):
-	"""
-	{
-		"tName": "nnn",
-		"tDes": "xxx",
-		"tOther": "xxx",
-		"cDes": ["序号", "xx", "xx"],
-		"cType": ["int", "string", "string"],
-		"cName": ["id", "xx", "yy"],
-		"tKey": [1, 1, 0],
-		"tData": [{
-				"id": 10000,
-				"xx": "10001_200,10002_1,10004_5",
-				"yy": "AAA"
-			},
-			{
-				"id": 21001,
-				"xx": "10004_1000,10001_1000",
-				"yy": "BBB"
-			},
-			{
-				"id": 22001,
-				"xx": "10004_1000",
-				"yy": "CCC"
-			}
-		]
-	}
-	"""
 	dataForJson = {}
 
 	for k, v in tableDataDict.items():
