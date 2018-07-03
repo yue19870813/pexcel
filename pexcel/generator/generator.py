@@ -89,7 +89,7 @@ def toJson(tableDataDict):
 	# print (json.dumps(dataForJson))
 	# print(json.dumps(dataForJson, ensure_ascii=False, indent=4))
 	# json.toText(dataForJson)
-	return json.dumps(dataForJson)
+	return dataForJson
 
 # 将数据转换成纯文本格式数据
 def toText(tableDataDict):
