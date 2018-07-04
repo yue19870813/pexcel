@@ -6,7 +6,7 @@ import json
 import config, language
 from util import excel
 from interpreter import interpreter
-import json
+
 
 ' generator module '
 
