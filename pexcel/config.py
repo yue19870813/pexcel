@@ -11,6 +11,8 @@ __author__ = 'ituuz'
 此文件是用于保存全局设置的，包括命令行传入的参数以及后期GUI上用户选择的参数等。
 同时里面的设置可以手动填写，命令行参数会覆盖手动填写的参数。
 """
+# 是否是调试模式
+IS_DEBUG = True
 
 # 最终生成数据类型枚举
 OutputDataType = Enum('OutputDataType', ('Json', 'Binary', 'Text'))

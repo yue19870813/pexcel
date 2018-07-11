@@ -4,7 +4,7 @@
 
 import json
 import config, language
-from util import excel
+from util import excel, common
 from interpreter import interpreter
 
 
@@ -20,19 +20,21 @@ __author__ = 'ituuz'
 将配表的数据集合生成指定文件
 """
 def generate (tableDataDict):
+	# 准备数据
+	preData = prepareData(tableDataDict)
 	if config.OUTPUT_DATA_TYPE == config.OutputDataType.Json:
-		jsonStr = toJson(tableDataDict)
+		jsonStr = toJson(preData)
 	elif config.OUTPUT_DATA_TYPE == config.OutputDataType.Text:
-		textStr = toText(tableDataDict)
+		textStr = toText(preData)
 	elif config.OUTPUT_DATA_TYPE == config.OutputDataType.Binary:
-		toBinary(tableDataDict)
+		toBinary(preData)
 	else:
 		# 不存在这种生成数据的格式
 		print (language.DATA_GENERATE_TYPE_NOT_EXIST + "：" + config.OUTPUT_DATA_TYPE)
 
 
-# 将数据转换为json格式字符串
-def toJson(tableDataDict):
+# 处理数据
+def prepareData(tableDataDict):
 	dataForJson = {}
 
 	for k, v in tableDataDict.items():
@@ -56,16 +58,25 @@ def toJson(tableDataDict):
 				index = index + 1
 			dataList.append(dataOneMap)
 		dataForJson["tData"] = dataList
+	return dataForJson
+
+# 将数据转换为json格式字符串
+def toJson(preData):
+	
+	result = {}
+	result["tKey"] = preData["tKey"]
+	result["tData"] = preData["tData"]
 	
 	# fw = open('generator/dataJson.json', 'w', encoding='utf-8')
 	# json.dump(dataForJson, fw, ensure_ascii=False, indent=4)
 	# print (json.dumps(dataForJson))
-	# print(json.dumps(dataForJson, ensure_ascii=False, indent=4))
+	common.log("-------------------")
+	common.log(json.dumps(result, ensure_ascii=False, indent=4))
 	# json.toText(dataForJson)
-	return dataForJson
+	return result
 
 # 将数据转换成纯文本格式数据
-def toText(tableDataDict):
+def toText(preData):
 	"""
 	int,string,string
 	id,xx,yy
@@ -76,7 +87,7 @@ def toText(tableDataDict):
 	return "text"
 
 # 将数据转换为二进制格式数据
-def toBinary(tableDataDict):
+def toBinary(preData):
 	pass
 
 
