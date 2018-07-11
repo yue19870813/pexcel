@@ -33,7 +33,7 @@ LibsType = Enum('LibsType', ('TypeScript', 'JavaScript', 'C', 'Java', 'Python'))
 INPUT_PATH = "./../template/"
 
 # 最终输出目录
-OUTPUT_PATH = "output path"
+OUTPUT_PATH = "./../output/"
 
 # 生成的数据类型
 OUTPUT_DATA_TYPE = OutputDataType.Json
