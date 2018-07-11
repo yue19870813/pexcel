@@ -6,7 +6,7 @@ import json
 import config, language
 from util import excel, common, pfile
 from interpreter import interpreter
-
+from generator import libs_generator
 
 ' generator module '
 
@@ -33,6 +33,10 @@ def generate (tableDataDict):
 	else:
 		# 不存在这种生成数据的格式
 		common.alert(language.DATA_GENERATE_TYPE_NOT_EXIST + "：" + config.OUTPUT_DATA_TYPE)
+		return
+
+	# 生成相关工具库
+	libs_generator.generate(preData)
 
 
 # 处理数据
