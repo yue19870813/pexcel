@@ -11,7 +11,7 @@ Excel数据导出工具
 - [ ] 生成json格式的文本数据[Core]
 - [x] 增加多语言支持
 - [ ] 配套使用的TypeScript类库[Lib]
-- [ ] 支持单键和多键[Core]
+- [x] 支持单键和多键[Core]
 - [ ] 将工具图形界面化[GUI]
 - [x] 配置源文件目录与导出目录[Core]
 - [ ] GUI用户设置记忆[GUI]
@@ -31,3 +31,6 @@ Excel数据导出工具
 - [ ] 依赖安装脚本[Tools]
 
 ## 开始使用 (Start to use)
+
+### 依赖安装 (Install depend)
+安装python3中依赖的包：openpyxl
