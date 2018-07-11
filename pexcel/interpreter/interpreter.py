@@ -5,7 +5,7 @@
 import os
 import os.path
 
-from util import excel
+from util import excel, common
 from generator import generator
 
 ' interpreter module '
@@ -53,7 +53,7 @@ Table else:" + self.tableElse
 """
 def runByPath(path):
 	if not os.path.isdir(path):
-		print(path + "不是一个路径，请检查你的配置路径。")
+		common.alert(path + "不是一个路径，请检查你的配置路径。")
 		return
 	# 递归遍历目录解析excel文件
 	getData(path)
@@ -72,7 +72,7 @@ def getData(path):
 			if os.path.splitext(pathTemp)[1] != ".xlsx":
 				continue
 			## 处理数据
-			print("生成该文件数据：" + pathTemp)
+			common.log("生成该文件数据：" + pathTemp)
 			excelData = excel.convertExcel2List(pathTemp, "")
 			tableName = excelData[0]
 			tableDes = excelData[1]

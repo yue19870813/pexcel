@@ -4,7 +4,7 @@
 
 import json
 import config, language
-from util import excel, common
+from util import excel, common, pfile
 from interpreter import interpreter
 
 
@@ -24,13 +24,15 @@ def generate (tableDataDict):
 	preData = prepareData(tableDataDict)
 	if config.OUTPUT_DATA_TYPE == config.OutputDataType.Json:
 		jsonStr = toJson(preData)
+		# 将json数据写入指定文件
+		pfile.writeFile(jsonStr, preData["tName"], config.OUTPUT_PATH)
 	elif config.OUTPUT_DATA_TYPE == config.OutputDataType.Text:
 		textStr = toText(preData)
 	elif config.OUTPUT_DATA_TYPE == config.OutputDataType.Binary:
 		toBinary(preData)
 	else:
 		# 不存在这种生成数据的格式
-		print (language.DATA_GENERATE_TYPE_NOT_EXIST + "：" + config.OUTPUT_DATA_TYPE)
+		common.alert(language.DATA_GENERATE_TYPE_NOT_EXIST + "：" + config.OUTPUT_DATA_TYPE)
 
 
 # 处理数据
@@ -38,7 +40,6 @@ def prepareData(tableDataDict):
 	dataForJson = {}
 
 	for k, v in tableDataDict.items():
-
 		dataForJson["tName"] = k
 		dataForJson["tDes"] = v.tableDes
 		dataForJson["tOther"] = v.tableElse
@@ -58,6 +59,7 @@ def prepareData(tableDataDict):
 				index = index + 1
 			dataList.append(dataOneMap)
 		dataForJson["tData"] = dataList
+
 	return dataForJson
 
 # 将数据转换为json格式字符串
@@ -67,9 +69,6 @@ def toJson(preData):
 	result["tKey"] = preData["tKey"]
 	result["tData"] = preData["tData"]
 	
-	# fw = open('generator/dataJson.json', 'w', encoding='utf-8')
-	# json.dump(dataForJson, fw, ensure_ascii=False, indent=4)
-	# print (json.dumps(dataForJson))
 	common.log("-------------------")
 	common.log(json.dumps(result, ensure_ascii=False, indent=4))
 	# json.toText(dataForJson)

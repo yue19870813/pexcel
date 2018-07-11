@@ -19,3 +19,10 @@ def log(content):
 	if config.IS_DEBUG:
 		print("pexcel:" + content)
 	
+
+"""
+用于打印错误提示等非调试的情况下也要显示的信息
+后期在GUI中这些信息会以弹窗的形式展现
+"""
+def alert(content):
+	print(content)

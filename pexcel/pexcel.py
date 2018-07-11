@@ -4,6 +4,7 @@
 
 import sys, getopt, config, language
 from interpreter import interpreter
+from util import common
 
 __author__ = 'ituuz'
 
@@ -11,7 +12,7 @@ __author__ = 'ituuz'
 这个是整个程序的入口文件，负责初始化一些东西，激活一些配置，调用后续功能。
 """
 
-print("The author is " + config.__author__)
+common.log("The author is " + config.__author__)
 
 # 当前版本号
 VERSION = "v0.0.1"
@@ -27,8 +28,8 @@ def main(argv):
 		opts, args = getopt.getopt(argv,"i:o:f:g:t:e:l:p:vh")
 	except getopt.GetoptError:
 		# 确定你的命令或参数是否正确，请参考帮助信息。
-		print(language.COMMAND_ERROR_TIPS)
-		print(language.HELP_CONTENT)
+		common.alert(language.COMMAND_ERROR_TIPS)
+		common.alert(language.HELP_CONTENT)
 
 	# 取得所有命令行参数
 	command_i = "" # excel源文件目录
@@ -41,7 +42,7 @@ def main(argv):
 	command_p = "" # 生成的数据文件后缀名
 
 	for opt, arg in opts:
-		print(opt + "  " + arg)
+		common.log(opt + "  " + arg)
 		if opt == '-i':
 			command_i = arg
 		elif opt == '-o':
@@ -59,13 +60,13 @@ def main(argv):
 		elif opt == '-p':
 			command_p = arg
 		elif opt == '-v':
-			print("v0.0.1")
+			common.log("v0.0.1")
 			sys.exit()
 		elif opt == '-h' or opt == "help":
-			print(language.HELP_CONTENT)
+			common.alert(language.HELP_CONTENT)
 			sys.exit()
 		else:
-			print ("命令行参数使用错误：" + opt + "  " + arg)
+			common.log ("命令行参数使用错误：" + opt + "  " + arg)
 			sys.exit()
 
 
@@ -75,7 +76,7 @@ def main(argv):
 		command_o = config.OUTPUT_PATH
 		# 如果还为空则终止程序
 		if command_o == "":
-			print("数据文件输出目录不能为空!")
+			common.log("数据文件输出目录不能为空!")
 			sys.exit()
 
 
@@ -85,7 +86,7 @@ def main(argv):
 		command_i = config.INPUT_PATH
 		# 如果还为空则终止程序
 		if command_i == "":
-			print("输入目录不能为空!")
+			common.log("输入目录不能为空!")
 			sys.exit()
 
 	
