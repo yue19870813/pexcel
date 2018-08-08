@@ -1,0 +1,11 @@
+public class ${name} {
+	
+	%for topic in topics:
+	${topic}
+	%endfor
+
+	public getVo (${keyName}:${keyType}):${name} {
+
+		return null;
+	}
+}

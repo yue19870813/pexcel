@@ -33,4 +33,4 @@ Excel数据导出工具
 ## 开始使用 (Start to use)
 
 ### 依赖安装 (Install depend)
-安装python3中依赖的包：openpyxl
+安装python3中依赖的包：openpyxl,Mako
