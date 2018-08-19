@@ -36,7 +36,7 @@ INPUT_PATH = "./../template/"
 OUTPUT_PATH = "./../output/"
 
 # 生成的数据类型
-OUTPUT_DATA_TYPE = OutputDataType.Json
+OUTPUT_DATA_TYPE = OutputDataType.Text
 
 # 生成数据的加密方式
 DATA_ENCRYPT_TYPE = DataEncryptType.NoEncrypt

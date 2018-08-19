@@ -87,7 +87,27 @@ def toText(preData):
 	10001,10004_1000,BBB
 	10002,10003_444,ccc
 	"""
-	return "text"
+	text = ""
+	
+	textList = preData["cType"]
+	for textstr in textList:
+		text = text + " " + textstr
+
+	text = text + "\n"
+	textList = preData["cName"]
+	for textstr in textList:
+		text = text + " " + textstr
+
+	text = text + "\n"
+	dataList = preData["tData"]
+	for dataMap in dataList:
+		for k, v in dataMap.items():
+			text = text + " " + str(v)
+		text = text + "\n"
+
+	print(text)
+
+	return text
 
 # 将数据转换为二进制格式数据
 def toBinary(preData):
